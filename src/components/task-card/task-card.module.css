@@ -1,0 +1,33 @@
+.taskCard {
+    padding: 10px;
+    width: 90%;
+    background-color: #DDDDDD;
+    box-sizing: border-box;
+    margin: 10px auto;
+    text-align: center;
+    border: 1px solid black;
+    cursor:grab;
+    position: relative;
+    animation: fadeIn .3s ease-in-out;
+}
+.taskCard span {
+    position: absolute;
+    right: 4px;
+    top: -3px;
+    cursor: pointer;
+}
+.taskCard span:hover {
+    color: red;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
