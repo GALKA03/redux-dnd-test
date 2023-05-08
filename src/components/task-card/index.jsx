@@ -1,12 +1,13 @@
 import React, { forwardRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeTask, setDraggingStatus } from "../../redux/reducers/tasksReducer/taskSlice";
 // import { removeFromTaskList, setDraggingStatus } from "redux/actions/tasksActions";
 import classes from "./task-card.module.css";
-
-const TaskCard = forwardRef(({ task, index }, ref) => {
+import { selectTasks } from "../../redux/reducers/tasksReducer/tasksSelector";
+const TaskCard = forwardRef(({ task, index, tasksList }, ref) => {
   const dispatch = useDispatch();
-
+  const tasks = useSelector(selectTasks)
+console.log('cardTasklists', tasksList)
   const removeCard = async () => {
     try {
       await dispatch(removeTask(task.id));
@@ -40,8 +41,11 @@ const TaskCard = forwardRef(({ task, index }, ref) => {
       onDragStart={handleDragStart}
       onDragEnd={() => dispatch(setDraggingStatus(false))}
     >
+      {/* <h3>{title}</h3>
+      <p>{comments}</p>
+      <a href="url">{url }</a>
       <span onClick={removeCard}>X</span>
-      {task.title}
+      {task.title} */}
     </div>
   );
 });

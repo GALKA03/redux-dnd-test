@@ -8,8 +8,8 @@ import verifyTaskStatusUpdate from "../../redux/thunks/verifyTaskStatusUpdate";
 
 
 const TaskContainer = ({ status }) => {
-  const { tasksList, isDragging } = useSelector(selectTasks);
-  
+   const { tasksList, isDragging } = useSelector(selectTasks);
+  const tasks= useSelector(selectTasks);
    const dragOverItem = useRef(null); // To store current item insert position
   const dispatch = useDispatch();
 
@@ -45,7 +45,7 @@ const TaskContainer = ({ status }) => {
       {tasksList.map(
         (task, index) =>
           task.status === status && (
-            <TaskCard key={task.id} task={task} index={index} ref={dragOverItem}/>
+            <TaskCard key={task.id} tasklists={tasksList} task={task} index={index} ref={dragOverItem}/>
           )
       )}
     </div>

@@ -9,6 +9,8 @@ import { addTask } from "../../redux/reducers/tasksReducer/taskSlice";
 import { FolderAddTwoTone } from '@ant-design/icons';
 import { Button, Form, Input, Row } from 'antd';
 import { nanoid } from 'nanoid';
+import { fetchIssues } from "../../redux/reducers/tasksReducer/taskOperator";
+
 
 const KanbanBoard = () => {
 
@@ -16,7 +18,20 @@ const KanbanBoard = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const dispatch = useDispatch();
    const select = useSelector(selectTasks)
-  console.log('select',select.tasksList.id) 
+  console.log('select', select.tasksList.id) 
+  const [listShow, setListShow] = useState('')
+  
+  const fechIssues = async () => {
+    try {
+
+      setListShow()
+      const showFech = await dispatch(fetchIssues()) 
+      console.log('showFech',showFech)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
   const handleTaskAdd = async () => {
     try {
       if (taskTitle) {
